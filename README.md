@@ -11,7 +11,7 @@ I tend to run it using:
 
 `mvn tomcat7:run-war`
 
-The JENKINS_HOME location is ~/target/jenkins_home (so a Maven clean will get rid of it).
+The _JENKINS_HOME_ location is _~/target/jenkins_home_ (so a `mvn clean` will get rid of it).
 
 After the initial run I tend to edit _~/target/jenkins_home/config.xml_ to specify _&lt;useSecurity>false&lt;/useSecurity>_.
 
