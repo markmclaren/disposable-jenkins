@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>edu.bristol</groupId>
+    <artifactId>disposable-jenkins</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <properties>
+        <jenkins-version>2.81</jenkins-version>
+        <jenkins-home>target/jenkins_home</jenkins-home>
+        <jenkins-plugins-home>${jenkins-home}/plugins</jenkins-plugins-home>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>jenkins-releases</id>
+            <url>http://repo.jenkins-ci.org/releases/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jenkins-ci.main</groupId>
+            <artifactId>jenkins-war</artifactId>
+            <version>${jenkins-version}</version>
+            <type>war</type>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <!-- dependency for job-dsl -->
+                                <artifactItem>
+                                    <groupId>org.jenkins-ci.plugins</groupId>
+                                    <artifactId>structs</artifactId>
+                                    <version>1.10</version>
+                                    <type>hpi</type>
+                                    <outputDirectory>${jenkins-plugins-home}</outputDirectory>
+                                </artifactItem>
+                                <!-- dependency for job-dsl -->
+                                <artifactItem>
+                                    <groupId>org.jenkins-ci.plugins</groupId>
+                                    <artifactId>script-security</artifactId>
+                                    <version>1.34</version>
+                                    <type>hpi</type>
+                                    <outputDirectory>${jenkins-plugins-home}</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jenkins-ci.plugins</groupId>
+                                    <artifactId>job-dsl</artifactId>
+                                    <version>1.65</version>
+                                    <type>hpi</type>
+                                    <outputDirectory>${jenkins-plugins-home}</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jenkins-ci.plugins</groupId>
+                                    <artifactId>text-finder</artifactId>
+                                    <version>1.10</version>
+                                    <type>hpi</type>
+                                    <outputDirectory>${jenkins-plugins-home}</outputDirectory>
+                                </artifactItem>
+                                <!-- dependency for respository-connector -->
+                                <artifactItem>
+                                    <groupId>org.jenkins-ci.plugins</groupId>
+                                    <artifactId>token-macro</artifactId>
+                                    <version>1.5.1</version>
+                                    <type>hpi</type>
+                                    <outputDirectory>${jenkins-plugins-home}</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jenkins-ci.plugins</groupId>
+                                    <artifactId>repository-connector</artifactId>
+                                    <version>1.1.3</version>
+                                    <type>hpi</type>
+                                    <outputDirectory>${jenkins-plugins-home}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/jenkins</path>
+                    <uriEncoding>utf-8</uriEncoding>
+                    <systemProperties>
+                        <JENKINS_HOME>${jenkins-home}</JENKINS_HOME>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
