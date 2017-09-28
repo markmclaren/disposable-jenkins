@@ -15,4 +15,4 @@ The JENKINS_HOME location is ~/target/jenkins_home (so a Maven clean will get ri
 
 After the initial run I tend to edit _~/target/jenkins_home/config.xml_ to specify _&lt;useSecurity>false&lt;/useSecurity>_.
 
-I've primed this one with the Job DSL, text-finder and repository-connector plugins because they are currently of interest to me, other than that - it is just a disposable Jenkins installation.
+I've primed this one with the [Job DSL](https://wiki.jenkins.io/display/JENKINS/Job+DSL+Plugin), [text-finder](https://wiki.jenkins.io/display/JENKINS/Text-finder+Plugin) and [repository-connector](https://wiki.jenkins.io/display/JENKINS/Repository+Connector+Plugin) plugins because they are currently of interest to me, other than that - it is just a disposable Jenkins installation.
