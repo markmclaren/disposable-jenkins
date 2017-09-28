@@ -11,6 +11,8 @@ I tend to run it using:
 
 `mvn tomcat7:run-war`
 
+This surfaces Jenkins running at: [http://localhost:8080/jenkins](http://localhost:8080/jenkins)
+
 The _JENKINS_HOME_ location is _~/target/jenkins_home_ (so a `mvn clean` will get rid of it).
 
 After the initial run I tend to edit _~/target/jenkins_home/config.xml_ to specify _&lt;useSecurity>false&lt;/useSecurity>_.
